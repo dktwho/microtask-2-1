@@ -26,7 +26,7 @@ export function Todolist(props: PropsType) {
 
     const addTask = () => {
         if (title.trim() !== "") {
-            props.addTask(props.todoListId, title.trim() );
+            props.addTask(props.todoListId, title.trim());
             setTitle("");
         } else {
             setError("Title is required");
@@ -45,12 +45,14 @@ export function Todolist(props: PropsType) {
     }
 
     const onAllClickHandler = () => props.changeFilter(props.todoListId, "all");
-    const onActiveClickHandler = () => props.changeFilter(props.todoListId,"active");
-    const onCompletedClickHandler = () => props.changeFilter(props.todoListId,"completed");
+    const onActiveClickHandler = () => props.changeFilter(props.todoListId, "active");
+    const onCompletedClickHandler = () => props.changeFilter(props.todoListId, "completed");
 
 
     return <div>
-        <h3>{props.title} <button onClick={() => props.removeTodoList(props.todoListId)}>x</button></h3>
+        <h3>{props.title}
+            <button onClick={() => props.removeTodoList(props.todoListId)}>x</button>
+        </h3>
         <div>
             <input value={title}
                    onChange={onChangeHandler}
@@ -80,11 +82,14 @@ export function Todolist(props: PropsType) {
         </ul>
         <div>
             <button className={props.filter === 'all' ? "active-filter" : ""}
-                    onClick={onAllClickHandler}>All</button>
+                    onClick={onAllClickHandler}>All
+            </button>
             <button className={props.filter === 'active' ? "active-filter" : ""}
-                onClick={onActiveClickHandler}>Active</button>
+                    onClick={onActiveClickHandler}>Active
+            </button>
             <button className={props.filter === 'completed' ? "active-filter" : ""}
-                onClick={onCompletedClickHandler}>Completed</button>
+                    onClick={onCompletedClickHandler}>Completed
+            </button>
         </div>
     </div>
 }
