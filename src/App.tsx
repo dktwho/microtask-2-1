@@ -12,7 +12,6 @@ type TodoListsType = {
 
 function App() {
 
-
     let todolistID1 = v1();
     let todolistID2 = v1();
 
@@ -49,15 +48,16 @@ function App() {
 
     function changeStatus(todoListId: string,taskId: string, isDoneValue: boolean) {
         setTasks({...tasks, [todoListId]: tasks[todoListId].map(t => t.id === taskId ? {...t, isDone:isDoneValue } : t)})
-
-
     }
-
 
     function changeFilter(todoListId: string, value: FilterValuesType) {
-
+        setTodolists(todolists.map(tl => tl.id === todoListId ? {...tl, filter: value} : tl ))
     }
 
+    function removeTodoList  (todoListId: string)  {
+        setTodolists(todolists.filter(tl => tl.id !== todoListId))
+        delete tasks[todoListId]
+    }
 
     return (
         <div className="App">
@@ -82,6 +82,7 @@ function App() {
                         changeTaskStatus={changeStatus}
                         filter={tl.filter}
                         todoListId={tl.id}
+                        removeTodoList={removeTodoList}
                     />
                 )
             })}
